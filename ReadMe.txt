@@ -2,6 +2,9 @@
 https://www.youtube.com/playlist?list=PLeqyOOqxeiINoBHHADmFPLjG50Czro-Oo
 
 TODO:
+1. Выучить теорию по модели ISO/OSI и стеку протоколов TCP/IP;
+
+DONE:
 1. Изучить следующие спецификации:
 	FastEthernet:
 		100Base-T4;
