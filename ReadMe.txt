@@ -2,6 +2,10 @@
 https://www.youtube.com/playlist?list=PLeqyOOqxeiINoBHHADmFPLjG50Czro-Oo
 
 TODO:
+1. Установить Notepad++: https://notepad-plus-plus.org/downloads/;
+2. Выучить теорию по стеку протоколов TCP/IP;
+
+DONE:
 1. Выучить теорию по модели ISO/OSI и стеку протоколов TCP/IP;
 2. Степени числа 2 до 2^16 наизусть;
 3. Почитать про протоколы RTP и Quic;
