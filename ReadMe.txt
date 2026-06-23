@@ -2,6 +2,10 @@
 https://www.youtube.com/playlist?list=PLeqyOOqxeiINoBHHADmFPLjG50Czro-Oo
 
 TODO:
+1. Системы счисления наизусть:	https://github.com/okovtun/P_421_NP/blob/master/NumericSystems.pdf
+2. Теорию наизусть;
+
+DONE:
 1. Установить Notepad++: https://notepad-plus-plus.org/downloads/;
 2. Выучить теорию по стеку протоколов TCP/IP;
 
