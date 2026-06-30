@@ -8,6 +8,7 @@ https://learn.microsoft.com/en-us/windows/win32/controls/ip-address-control-refe
 TODO:
 1. Системы счисления наизусть:	https://github.com/okovtun/P_421_NP/blob/master/NumericSystems.pdf
 2. Теорию наизусть;
+3. Изучить побитовые операции;
 
 DONE:
 1. Установить Notepad++: https://notepad-plus-plus.org/downloads/;

@@ -36,8 +36,10 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			break;
 		case IDC_IPMASK:
 			SendMessage(hIPmask, IPM_GETADDRESS, 0, (LPARAM)&dwIPmask);
-			for (dwIPprefix = 0; dwIPmask; dwIPprefix++, dwIPmask <<= 1);
+			for (dwIPprefix = 0; dwIPmask; dwIPprefix++, dwIPmask <<= 1);//Тело этого цикла состоит из одного пустого выражения
 			sprintf(szIPprefix, "%i", dwIPprefix);
+			//https://legacy.cplusplus.com/reference/cstdio/sprintf/?kw=sprintf
+			//https://legacy.cplusplus.com/reference/cstdio/printf/
 			SendMessage(hEditPrefix, WM_SETTEXT, 0, (LPARAM)szIPprefix);
 			break;
 		case IDC_EDIT_PREFIX:
