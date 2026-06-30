@@ -1,6 +1,10 @@
 ﻿https://github.com/okovtun/P_421_NP.git
 https://www.youtube.com/playlist?list=PLeqyOOqxeiINoBHHADmFPLjG50Czro-Oo
 
+MSDN:
+https://learn.microsoft.com/en-us/windows/win32/controls/up-down-control-reference
+https://learn.microsoft.com/en-us/windows/win32/controls/ip-address-control-reference
+
 TODO:
 1. Системы счисления наизусть:	https://github.com/okovtun/P_421_NP/blob/master/NumericSystems.pdf
 2. Теорию наизусть;
