@@ -6,6 +6,9 @@ https://learn.microsoft.com/en-us/windows/win32/controls/up-down-control-referen
 https://learn.microsoft.com/en-us/windows/win32/controls/ip-address-control-reference
 
 TODO:
+1. Вычислить количество IP-адресов и количество узлов для заданной пары IP-адрес/Маска;
+
+DONE:
 1. При переходе на поле IP-адреса, после изменения Маски/Префикса, 
    ни Маска ни Префикс НЕ должны сбрасываться на значения по умолчанию для класса адреса;
 

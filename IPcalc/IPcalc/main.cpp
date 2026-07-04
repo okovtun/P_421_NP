@@ -8,6 +8,8 @@ using std::cout;
 using std::endl;;
 
 BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+CHAR* FormatIPaddress(CONST CHAR szMessage[], CHAR szBuffer[], DWORD dwIPaddress);
+CHAR* FormatNumber(CONST CHAR szMessage[], CHAR szBuffer[], DWORD dwIPaddress);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, INT nCmdShow)
 {
@@ -90,7 +92,31 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 		case IDOK:
-			break;
+		{
+			CHAR szInfo[256] = {};
+			CHAR szNetworkAddress[256] = {};
+			CHAR szBroadcastAddress[256] = {};
+			CHAR szIPamount[256] = {};
+			CHAR szHostAmount[256] = {};
+			SendMessage(hIPaddress, IPM_GETADDRESS, 0, (LPARAM)&dwIPaddress);
+			SendMessage(hIPmask, IPM_GETADDRESS, 0, (LPARAM)&dwIPmask);
+			DWORD dwNetworkAddress = dwIPaddress & dwIPmask;
+			DWORD dwBroadcastAddress = dwIPaddress | ~dwIPmask;
+			DWORD dwIPamount = 0;
+			DWORD dwHostAmount = 0;
+
+			sprintf
+			(
+				szInfo,
+				"%s;\n%s;\n%s;\n%s;",
+				FormatIPaddress("Адрес сети:\t\t\t", szNetworkAddress, dwNetworkAddress),
+				FormatIPaddress("Широковещательный адрес:\t", szBroadcastAddress, dwBroadcastAddress),
+				FormatNumber("Количество IP-адресов:\t", szIPamount, dwIPamount),
+				FormatNumber("Количество узлов:\t\t", szHostAmount, dwHostAmount)
+			);
+			SendMessage(GetDlgItem(hwnd, IDC_STATIC_INFO), WM_SETTEXT, 0, (LPARAM)szInfo);
+		}
+		break;
 		case IDCANCEL:EndDialog(hwnd, 0);
 		}
 	}
@@ -111,4 +137,31 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_CLOSE:EndDialog(hwnd, 0);
 	}
 	return FALSE;
+}
+CHAR* FormatIPaddress(CONST CHAR szMessage[], CHAR szBuffer[], DWORD dwIPaddress)
+{
+	ZeroMemory(szBuffer, strlen(szBuffer) + 1);
+	sprintf
+	(
+		szBuffer,
+		"%s%i.%i.%i.%i",
+		szMessage,
+		FIRST_IPADDRESS(dwIPaddress),
+		SECOND_IPADDRESS(dwIPaddress),
+		THIRD_IPADDRESS(dwIPaddress),
+		FOURTH_IPADDRESS(dwIPaddress)
+	);
+	return szBuffer;
+}
+CHAR* FormatNumber(CONST CHAR szMessage[], CHAR szBuffer[], DWORD dwNumber)
+{
+	ZeroMemory(szBuffer, strlen(szBuffer) + 1);
+	sprintf
+	(
+		szBuffer,
+		"%s%i",
+		szMessage,
+		dwNumber
+	);
+	return szBuffer;
 }
