@@ -1,7 +1,11 @@
 #include<Windows.h>
 #include<CommCtrl.h>
 #include<cstdio>
+#include<iostream>
 #include"resource.h"
+using std::cin;
+using std::cout;
+using std::endl;;
 
 BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
@@ -23,6 +27,8 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_INITDIALOG:
 		SendMessage(GetDlgItem(hwnd, IDC_SPIN_PREFIX), UDM_SETRANGE, 0, MAKEWORD(32, 0));
+		//AllocConsole();
+		freopen("CONOUT$", "w", stdout);
 		break;
 	case WM_COMMAND:
 	{
@@ -37,12 +43,17 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		{
 		case IDC_IPADDRESS:
 			SendMessage(hIPaddress, IPM_GETADDRESS, 0, (LPARAM)&dwIPaddress);
+			SendMessage(hEditPrefix, WM_GETTEXT, 32, (LPARAM)szIPprefix);
+			dwIPprefix = atoi(szIPprefix);
 			/*if (FIRST_IPADDRESS(dwIPaddress) < 128)SendMessage(hIPmask, IPM_SETADDRESS, 0, MAKEIPADDRESS(255,0,0,0));
 			else if (FIRST_IPADDRESS(dwIPaddress) < 192)SendMessage(hIPmask, IPM_SETADDRESS, 0, MAKEIPADDRESS(255,255,0,0));
 			else if (FIRST_IPADDRESS(dwIPaddress) < 224)SendMessage(hIPmask, IPM_SETADDRESS, 0, MAKEIPADDRESS(255,255,255,0));*/
-			if (FIRST_IPADDRESS(dwIPaddress) < 128)SendMessage(hEditPrefix, WM_SETTEXT, 0, (LPARAM)"8");
-			else if (FIRST_IPADDRESS(dwIPaddress) < 192)SendMessage(hEditPrefix, WM_SETTEXT, 0, (LPARAM)"16");
-			else if (FIRST_IPADDRESS(dwIPaddress) < 224)SendMessage(hEditPrefix, WM_SETTEXT, 0, (LPARAM)"24");
+			if (dwIPprefix == 0 || dwIPprefix == 8 || dwIPprefix == 24)
+			{
+				if (FIRST_IPADDRESS(dwIPaddress) < 128)SendMessage(hEditPrefix, WM_SETTEXT, 0, (LPARAM)"8");
+				else if (FIRST_IPADDRESS(dwIPaddress) < 192)SendMessage(hEditPrefix, WM_SETTEXT, 0, (LPARAM)"16");
+				else if (FIRST_IPADDRESS(dwIPaddress) < 224)SendMessage(hEditPrefix, WM_SETTEXT, 0, (LPARAM)"24");
+			}
 			break;
 
 		case IDC_IPMASK:
