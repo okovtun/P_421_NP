@@ -41,6 +41,10 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		CHAR  szIPprefix[32] = {};*/
 		switch (LOWORD(wParam))
 		{
+		case IDC_BUTTON_RESET:
+			SendMessage(hIPaddress, IPM_SETADDRESS, 0, 0);
+			SendMessage(hEditPrefix, WM_SETTEXT, 0, (LPARAM)"");
+			break;
 		case IDC_IPADDRESS:
 			SendMessage(hIPaddress, IPM_GETADDRESS, 0, (LPARAM)&dwIPaddress);
 			SendMessage(hEditPrefix, WM_GETTEXT, 32, (LPARAM)szIPprefix);
