@@ -6,6 +6,10 @@ https://learn.microsoft.com/en-us/windows/win32/controls/up-down-control-referen
 https://learn.microsoft.com/en-us/windows/win32/controls/ip-address-control-reference
 
 TODO:
+1. Залить проект 'NetworkProgramming' на GitHub;
+2. Прислать ссылку на репозиторий;
+
+DONE:
 1. Вычислить количество IP-адресов и количество узлов для заданной пары IP-адрес/Маска;
 
 DONE:

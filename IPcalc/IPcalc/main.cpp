@@ -1,4 +1,4 @@
-#include<Windows.h>
+п»ї#include<Windows.h>
 #include<CommCtrl.h>
 #include<cstdio>
 #include<iostream>
@@ -65,7 +65,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		case IDC_IPMASK:
 			/*
 			SendMessage(hIPmask, IPM_GETADDRESS, 0, (LPARAM)&dwIPmask);
-			for (dwIPprefix = 0; dwIPmask; dwIPprefix++, dwIPmask <<= 1);//Тело этого цикла состоит из одного пустого выражения
+			for (dwIPprefix = 0; dwIPmask; dwIPprefix++, dwIPmask <<= 1);//РўРµР»Рѕ СЌС‚РѕРіРѕ С†РёРєР»Р° СЃРѕСЃС‚РѕРёС‚ РёР· РѕРґРЅРѕРіРѕ РїСѓСЃС‚РѕРіРѕ РІС‹СЂР°Р¶РµРЅРёСЏ
 			sprintf(szIPprefix, "%i", dwIPprefix);
 			//https://legacy.cplusplus.com/reference/cstdio/sprintf/?kw=sprintf
 			//https://legacy.cplusplus.com/reference/cstdio/printf/
@@ -78,14 +78,14 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			{
 				SendMessage(hEditPrefix, WM_GETTEXT, 31, (LPARAM)szIPprefix);
 				INT iPrefix = atoi(szIPprefix);	//atoi() - ANSI/ASCII string to INT.
-				//ANSI/ASCII-string (NULL-Terminated Line) - строка, заканчивающаяся нулем (C-string).
-				//Массив элементов 'CHAR', последним элементом которого является '\0';
+				//ANSI/ASCII-string (NULL-Terminated Line) - СЃС‚СЂРѕРєР°, Р·Р°РєР°РЅС‡РёРІР°СЋС‰Р°СЏСЃСЏ РЅСѓР»РµРј (C-string).
+				//РњР°СЃСЃРёРІ СЌР»РµРјРµРЅС‚РѕРІ 'CHAR', РїРѕСЃР»РµРґРЅРёРј СЌР»РµРјРµРЅС‚РѕРј РєРѕС‚РѕСЂРѕРіРѕ СЏРІР»СЏРµС‚СЃСЏ '\0';
 				if (iPrefix > 32)
 				{
 					SendMessage(hEditPrefix, WM_SETTEXT, 0, (LPARAM)"32");
 					iPrefix = 32;
 				}
-				dwIPmask = UINT_MAX;	//все биты в Маске устанавливаем в 1
+				dwIPmask = UINT_MAX;	//РІСЃРµ Р±РёС‚С‹ РІ РњР°СЃРєРµ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІ 1
 				for (INT i = 0; i < 32 - iPrefix; dwIPmask <<= 1, i++);
 				SendMessage(hIPmask, IPM_SETADDRESS, 0, dwIPmask);
 			}
@@ -109,10 +109,10 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			(
 				szInfo,
 				"%s;\n%s;\n%s;\n%s;",
-				FormatIPaddress("Адрес сети:\t\t\t", szNetworkAddress, dwNetworkAddress),
-				FormatIPaddress("Широковещательный адрес:\t", szBroadcastAddress, dwBroadcastAddress),
-				FormatNumber("Количество IP-адресов:\t", szIPamount, dwIPamount),
-				FormatNumber("Количество узлов:\t\t", szHostAmount, dwHostAmount)
+				FormatIPaddress("РђРґСЂРµСЃ СЃРµС‚Рё:\t\t\t", szNetworkAddress, dwNetworkAddress),
+				FormatIPaddress("РЁРёСЂРѕРєРѕРІРµС‰Р°С‚РµР»СЊРЅС‹Р№ Р°РґСЂРµСЃ:\t", szBroadcastAddress, dwBroadcastAddress),
+				FormatNumber("РљРѕР»РёС‡РµСЃС‚РІРѕ IP-Р°РґСЂРµСЃРѕРІ:\t", szIPamount, dwIPamount),
+				FormatNumber("РљРѕР»РёС‡РµСЃС‚РІРѕ СѓР·Р»РѕРІ:\t\t", szHostAmount, dwHostAmount)
 			);
 			SendMessage(GetDlgItem(hwnd, IDC_STATIC_INFO), WM_SETTEXT, 0, (LPARAM)szInfo);
 		}
@@ -126,7 +126,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		//if (wParam == IDC_IPMASK)
 		{
 			SendMessage(hIPmask, IPM_GETADDRESS, 0, (LPARAM)&dwIPmask);
-			for (dwIPprefix = 0; dwIPmask; dwIPprefix++, dwIPmask <<= 1);//Тело этого цикла состоит из одного пустого выражения
+			for (dwIPprefix = 0; dwIPmask; dwIPprefix++, dwIPmask <<= 1);//РўРµР»Рѕ СЌС‚РѕРіРѕ С†РёРєР»Р° СЃРѕСЃС‚РѕРёС‚ РёР· РѕРґРЅРѕРіРѕ РїСѓСЃС‚РѕРіРѕ РІС‹СЂР°Р¶РµРЅРёСЏ
 			sprintf(szIPprefix, "%i", dwIPprefix);
 			//https://legacy.cplusplus.com/reference/cstdio/sprintf/?kw=sprintf
 			//https://legacy.cplusplus.com/reference/cstdio/printf/
