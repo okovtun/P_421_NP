@@ -94,13 +94,19 @@ void main()
 	else if (iResult == 0) cout << "Nothing received, connection closing" << endl;
 	else cout << "Receive failed with error: " << WSAGetLastError() << endl;
 
+	//7) Отправка данных клиенту:
+	CHAR send_buffer[MTU] = {};
+	sprintf(send_buffer, "Привет Клиент, Ваше сообщение: %s", recv_buffer);
+	iResult = send(client_socket, send_buffer, strlen(send_buffer), NULL);
+	if (iResult == SOCKET_ERROR)cout << "send() failed with error: " << WSAGetLastError() << endl;
+
 	cin.get();	//Ожидает нажатие клавиши 'Enter';
 
-	//7) Закрываем соединение с клиентом:
+	//8) Закрываем соединение с клиентом:
 	iResult = shutdown(client_socket, SD_BOTH);
 	if (iResult)cout << "shutdown failed with error: " << WSAGetLastError() << endl;
 
-	//8) Освободить ресурсы:
+	//9) Освободить ресурсы:
 	closesocket(client_socket);
 	closesocket(listen_socket);
 	freeaddrinfo(target);
