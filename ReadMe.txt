@@ -6,6 +6,11 @@ https://learn.microsoft.com/en-us/windows/win32/controls/up-down-control-referen
 https://learn.microsoft.com/en-us/windows/win32/controls/ip-address-control-reference
 
 TODO:
+1. Вместо кода ошибки программа должна выводить сообщение об ошибке:
+	https://learn.microsoft.com/en-us/windows/win32/winsock/windows-sockets-error-codes-2
+	https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-formatmessage
+
+DONE:
 1. Залить проект 'NetworkProgramming' на GitHub;
 2. Прислать ссылку на репозиторий;
 
