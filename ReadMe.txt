@@ -6,6 +6,11 @@ https://learn.microsoft.com/en-us/windows/win32/controls/up-down-control-referen
 https://learn.microsoft.com/en-us/windows/win32/controls/ip-address-control-reference
 
 TODO:
+1. Создать ветку 'ServerErrorHandling';
+2. Применить функцию FormatLastError() на Сервере;
+3. Посмотреть код на $1 000 000 000;
+
+DONE:
 1. Вместо кода ошибки программа должна выводить сообщение об ошибке:
 	https://learn.microsoft.com/en-us/windows/win32/winsock/windows-sockets-error-codes-2
 	https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-formatmessage
