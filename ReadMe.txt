@@ -6,6 +6,12 @@ https://learn.microsoft.com/en-us/windows/win32/controls/up-down-control-referen
 https://learn.microsoft.com/en-us/windows/win32/controls/ip-address-control-reference
 
 TODO:
+1. Установить VMware Workstation;
+2. Создать виртуальную машину и установить на нее ос Windows:
+	https://archive.org/details/en_windows_10_enterprise_2016_ltsb_x64
+3.
+
+DONE:
 1. Создать ветку 'ServerErrorHandling';
 2. Применить функцию FormatLastError() на Сервере;
 3. Посмотреть код на $1 000 000 000;

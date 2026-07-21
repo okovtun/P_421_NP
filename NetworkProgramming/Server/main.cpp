@@ -106,32 +106,36 @@ void main()
 
 	//6) Получение данных от клиента:
 	CHAR recv_buffer[MTU] = {};
-	iResult = recv(client_socket, recv_buffer, MTU, NULL);
-	if (iResult > 0)
-	{
-		cout << iResult << " Bytes received. Message: " << recv_buffer << endl;
-	}
-	else if (iResult == 0)
-	cout << "Nothing received, connection closing.\nНет данных от клиента, закрываем соединение" << endl;
-	else
-	{
-		cout << FormatLastError(WSAGetLastError(), szError) << endl;
-		cout << "Receive failed with error: " << WSAGetLastError() << endl;
-		cout << "При получении данных возникла ошибка: " << WSAGetLastError() << endl;
-	}
-
-	//7) Отправка данных клиенту:
 	CHAR send_buffer[MTU] = {};
-	sprintf(send_buffer, "Привет Клиент, Ваше сообщение: %s", recv_buffer);
-	iResult = send(client_socket, send_buffer, strlen(send_buffer), NULL);
-	if (iResult == SOCKET_ERROR)
-	{
-		cout << FormatLastError(WSAGetLastError(), szError) << endl;
-		cout << "send() failed with error: " << WSAGetLastError() << endl;
-		cout << "При отправке данных возникла ошибка: " << WSAGetLastError() << endl;
-	}
 
-	cin.get();	//Ожидает нажатие клавиши 'Enter';
+	do
+	{
+		ZeroMemory(send_buffer, MTU);
+		ZeroMemory(recv_buffer, MTU);
+		iResult = recv(client_socket, recv_buffer, MTU, NULL);
+		if (iResult > 0)
+		{
+			cout << iResult << " Bytes received. Message: " << recv_buffer << endl;
+		}
+		else if (iResult == 0)
+			cout << "Nothing received, connection closing.\nНет данных от клиента, закрываем соединение" << endl;
+		else
+		{
+			cout << FormatLastError(WSAGetLastError(), szError) << endl;
+			cout << "Receive failed with error: " << WSAGetLastError() << endl;
+			cout << "При получении данных возникла ошибка: " << WSAGetLastError() << endl;
+		}
+
+		//7) Отправка данных клиенту:
+		sprintf(send_buffer, "Привет Клиент, Ваше сообщение: %s", recv_buffer);
+		iResult = send(client_socket, send_buffer, strlen(send_buffer), NULL);
+		if (iResult == SOCKET_ERROR)
+		{
+			cout << FormatLastError(WSAGetLastError(), szError) << endl;
+			cout << "send() failed with error: " << WSAGetLastError() << endl;
+			cout << "При отправке данных возникла ошибка: " << WSAGetLastError() << endl;
+		}
+	} while (true);
 
 	//8) Закрываем соединение с клиентом:
 	iResult = shutdown(client_socket, SD_BOTH);
