@@ -37,7 +37,7 @@ void main()
 	hints.ai_protocol = IPPROTO_TCP;
 	hints.ai_flags = AI_PASSIVE;//		Соединение будет работать в режиме 'LISTENING';
 
-	iResult = getaddrinfo(NULL, "445", &hints, &target);
+	iResult = getaddrinfo(NULL, "27015", &hints, &target);
 	//	NULL - '0.0.0.0'. Сервер будет прослушивать порт '27015' на всех доступных IP-адресах,
 	//  на всех сетевых картах, установленных на компьютере.
 	if (iResult)	// '0' - это FALSE, TRUE - это все что НЕ '0'
@@ -88,7 +88,11 @@ void main()
 	}
 
 	//5) Принимаем подключения от клиентов:
-	SOCKET client_socket = accept(listen_socket, NULL, NULL);
+	SOCKADDR_IN client_address;
+	int client_address_len = sizeof(client_address);
+	SOCKET client_socket = accept(listen_socket, (SOCKADDR*)&client_address, &client_address_len);
+	//cout << client_address.sa_data << endl;
+	cout << inet_ntoa(client_address.sin_addr) << ":" << ntohs(client_address.sin_port) << endl;
 	if (client_socket == INVALID_SOCKET)
 	{
 		cout << FormatLastError(WSAGetLastError(), szError) << endl;
@@ -105,7 +109,6 @@ void main()
 	iResult = recv(client_socket, recv_buffer, MTU, NULL);
 	if (iResult > 0)
 	{
-		cout << iResult << " Bytes received. Message: " << recv_buffer << endl;
 		cout << iResult << " Bytes received. Message: " << recv_buffer << endl;
 	}
 	else if (iResult == 0)

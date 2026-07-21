@@ -110,7 +110,7 @@ void main()
 	else cout 
 		<< "Receive failed with error: " << WSAGetLastError() << endl 
 		<< FormatLastError(dwError, szError);
-
+	cin.get();
 	//6) Завершаем сеанс работы с Сервером и освобождаем ресурсы:
 	iResult = shutdown(connect_socket, SD_BOTH);	//закрываем соединение с Сервером в обоих направлениях
 	dwError = WSAGetLastError();
