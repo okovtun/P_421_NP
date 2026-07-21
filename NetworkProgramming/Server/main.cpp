@@ -113,6 +113,7 @@ void main()
 		ZeroMemory(send_buffer, MTU);
 		ZeroMemory(recv_buffer, MTU);
 		iResult = recv(client_socket, recv_buffer, MTU, NULL);
+		//CreateThread
 		if (iResult > 0)
 		{
 			cout << iResult << " Bytes received. Message: " << recv_buffer << endl;
@@ -124,6 +125,7 @@ void main()
 			cout << FormatLastError(WSAGetLastError(), szError) << endl;
 			cout << "Receive failed with error: " << WSAGetLastError() << endl;
 			cout << "При получении данных возникла ошибка: " << WSAGetLastError() << endl;
+			break;
 		}
 
 		//7) Отправка данных клиенту:
@@ -138,6 +140,8 @@ void main()
 	} while (true);
 
 	//8) Закрываем соединение с клиентом:
+	cout << "Press 'Enter' to close connection" << endl;
+	cin.get();
 	iResult = shutdown(client_socket, SD_BOTH);
 	if (iResult)cout << FormatLastError(WSAGetLastError(), szError) << endl;
 	if (iResult)cout << "shutdown failed with error: " << WSAGetLastError() << endl;
