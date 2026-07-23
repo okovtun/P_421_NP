@@ -6,6 +6,9 @@ https://learn.microsoft.com/en-us/windows/win32/controls/up-down-control-referen
 https://learn.microsoft.com/en-us/windows/win32/controls/ip-address-control-reference
 
 TODO:
+1. Авторские права!!!
+
+TODO:
 1. Установить VMware Workstation;
 2. Создать виртуальную машину и установить на нее ос Windows:
 	https://archive.org/details/en_windows_10_enterprise_2016_ltsb_x64

@@ -92,7 +92,7 @@ void main()
 	freeaddrinfo(target);
 
 	//4) Отправка данных на Сервер:
-	CHAR send_buffer[MTU] = "Привет Сервер!";
+	CHAR send_buffer[MTU] = "Hello Server! How are you?";
 	do
 	{
 		iResult = send(connect_socket, send_buffer, strlen(send_buffer), 0);
