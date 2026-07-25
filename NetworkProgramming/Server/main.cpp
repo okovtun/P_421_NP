@@ -144,7 +144,13 @@ void main()
 	freeaddrinfo(target);
 	WSACleanup();
 }
-
+INT GetClientPosition(DWORD dwID)
+{
+	for (int i = 0; i < MAX_CONNECTIONS; i++)
+	{
+		if (g_dwThreadIDs[i] == dwID)return i;
+	}
+}
 VOID ClientHandler(SOCKET client_socket)
 {
 	SOCKADDR_IN client_address;
@@ -172,7 +178,9 @@ VOID ClientHandler(SOCKET client_socket)
 		//CreateThread
 		if (iResult > 0)
 		{
-			cout << sz_client_address << recv_buffer << ". (" << iResult << " Bytes);"<< endl;
+			cout << sz_client_address << recv_buffer << ". (" << iResult << " Bytes);";
+			cout << "\tThreadID: " << GetCurrentThreadId() << "\t\tPosition: " << GetClientPosition(GetCurrentThreadId());
+			cout << endl;
 			//cout << iResult << " Bytes received. Message: " << recv_buffer << endl;
 		}
 		else if (iResult == 0)
