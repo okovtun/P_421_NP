@@ -18,6 +18,7 @@ using std::endl;
 HANDLE	g_hThreads[MAX_CONNECTIONS] = {};
 DWORD	g_dwThreadIDs[MAX_CONNECTIONS] = {};
 SOCKET	g_hSockets[MAX_CONNECTIONS] = {};
+INT n = 0;
 
 VOID ClientHandler(SOCKET client_socket);
 
@@ -113,7 +114,19 @@ void main()
 			WSACleanup();
 			return;
 		}
-		ClientHandler(client_socket);
+
+		//ClientHandler(client_socket);
+		g_hSockets[n] = client_socket;
+		g_hThreads[n] = CreateThread
+		(
+			NULL,
+			0,
+			(LPTHREAD_START_ROUTINE)ClientHandler,
+			(LPVOID)g_hSockets[n],
+			NULL,
+			g_dwThreadIDs+n
+		);
+		n++;
 	} while (true);
 	//9) Освободить ресурсы:
 	closesocket(listen_socket);
