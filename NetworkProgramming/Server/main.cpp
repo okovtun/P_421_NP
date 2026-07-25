@@ -136,6 +136,16 @@ void main()
 
 VOID ClientHandler(SOCKET client_socket)
 {
+	SOCKADDR_IN client_address;
+	client_address.sin_family = AF_INET;	//	TCP/IP
+	INT namelen = sizeof(client_address);
+	getpeername(client_socket, (SOCKADDR*)&client_address, &namelen);
+	CHAR sz_client_address[32] = {};
+	CHAR sz_client_connected[32] = {};
+	sprintf(sz_client_address, "%s:%d - ", inet_ntoa(client_address.sin_addr), ntohs(client_address.sin_port));
+	sprintf(sz_client_connected, "%sCONNECTED", sz_client_address);
+	cout << "Client " << sz_client_connected << endl;
+
 	INT iResult = 0;
 	DWORD dwError = 0;
 	CHAR  szError[256] = {};
@@ -151,7 +161,8 @@ VOID ClientHandler(SOCKET client_socket)
 		//CreateThread
 		if (iResult > 0)
 		{
-			cout << iResult << " Bytes received. Message: " << recv_buffer << endl;
+			cout << sz_client_address << recv_buffer << ". (" << iResult << " Bytes);"<< endl;
+			//cout << iResult << " Bytes received. Message: " << recv_buffer << endl;
 		}
 		else if (iResult == 0)
 			cout << "Nothing received, connection closing.\nНет данных от клиента, закрываем соединение" << endl;
