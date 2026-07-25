@@ -5,8 +5,12 @@ MSDN:
 https://learn.microsoft.com/en-us/windows/win32/controls/up-down-control-reference
 https://learn.microsoft.com/en-us/windows/win32/controls/ip-address-control-reference
 
+!!!	Авторские права	!!!
+
 TODO:
-1. Авторские права!!!
+1. При отключении клиента, на Сервере должно освобождаться место для подключения нового клиента;
+2. На Сервере должно отображаться количество подключенных клиентов;
+3. Сообщение, отправленное на Сервер должно пересылаться всем подключенным клиентам;
 
 TODO:
 1. Установить VMware Workstation;
