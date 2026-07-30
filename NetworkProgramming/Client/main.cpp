@@ -20,7 +20,19 @@ LNK2019 (LNK - Linker, Компоновщик) возникает в том сл
 */
 //		WS2_32.lib
 #pragma comment(lib, "WS2_32.lib")
+#ifdef _DEBUG
 #pragma comment(lib, "FormatLastError.lib")
+#endif // _DEBUG
+
+#ifdef NDEBUG
+#ifdef _M_IX86
+#pragma comment(lib, "FormatLastErrorx86.lib")
+#elif  _M_X64
+#pragma comment(lib, "FormatLastErrorx64.lib")
+#endif WIN32
+#endif // NDEBUG
+
+
 
 using std::cin;
 using std::cout;
