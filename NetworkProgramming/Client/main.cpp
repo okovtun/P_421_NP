@@ -3,6 +3,7 @@
 #endif
 #include<Windows.h>
 #include<iostream>
+#include<fstream>
 #include<WinSock2.h>
 #include<WS2tcpip.h>
 #include<iphlpapi.h>
@@ -49,6 +50,22 @@ void main()
 	}
 
 	//1) Задаем параметры подключения:
+
+	CONST INT IP_SIZE = 16;
+	CHAR sz_server_ip[IP_SIZE] = {};
+	std::ifstream fin("Client.ini");
+	if (fin.is_open())
+	{
+		fin >> sz_server_ip;
+		cout << "Server IP: " << sz_server_ip << endl;
+		fin.close();
+	}
+	else
+	{
+		cout << "Error: 'Client.ini' not found" << endl;
+		return;
+	}
+
 	addrinfo hints;
 	addrinfo* target;
 
@@ -57,7 +74,7 @@ void main()
 	hints.ai_socktype = SOCK_STREAM;	//SOCK_STREAM и IPPROTO_TCP говорят о том, что мы будет подключаться по протоколу TCP.
 	hints.ai_protocol = IPPROTO_TCP;
 
-	iResult = getaddrinfo("127.0.0.1", "27015", &hints, &target);	//127.0.0.1:27015
+	iResult = getaddrinfo(sz_server_ip, "27015", &hints, &target);	//127.0.0.1:27015
 	if (iResult)
 	{
 		cout << "getaddrinfo() failed with error " << iResult << endl;
