@@ -8,6 +8,12 @@ https://learn.microsoft.com/en-us/windows/win32/controls/ip-address-control-refe
 !!!	Авторские права	!!!
 
 TODO:
+Добить курсач.
+
+Post-build events:
+https://dev.to/karenpayneoregon/visual-studio-copying-files-to-debug-or-release-folder-3onj
+
+DONE:
 1. Разобраться с условной компиляцией клиента, Сервера и FormatLastError;
 
 DONE:
